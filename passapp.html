@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pass APP - Taxi Fare Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="taxi-meter">
+            <div class="app-header">
+                <span class="app-icon">🛺</span>
+                <h1 class="app-title">Pass APP</h1>
+            </div>
+            
+            <div class="input-group">
+                <label for="kmInput" class="input-label">Enter Distance (km):</label>
+                <input type="number" id="kmInput" class="input-field" step="0.1" min="0" placeholder="Enter kilometers">
+            </div>
+            
+            <button class="calculate-btn" onclick="calculateFare()">Calculate Price</button>
+            
+            <div class="fare-display" id="result">
+                <span class="currency">Fare:</span> 
+                <span class="fare-amount">0</span> 
+                <span class="currency">៛</span>
+            </div>
+        </div>
+        
+        <div class="app-footer">
+            © BELTEI Pass APP - Reliable Tuk-Tuk Service
+        </div>
+    </div>
+
+    <script src="script.js">
+
+    </script>
+</body>
+</html>

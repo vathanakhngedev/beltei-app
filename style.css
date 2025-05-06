@@ -1,129 +1,185 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Nokora&display=swap');
-
+/* General Styles */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  font-family: 'Nokora', 'Khmer OS Content', sans-serif;
-  background: linear-gradient(to bottom right, #e0f7fa, #fce4ec);
-  height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
+/* App Container */
 .app-container {
-  background-color: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  background: white;
   border-radius: 20px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  padding: 30px;
-  width: 90%;
-  max-width: 420px;
-  transition: all 0.3s ease;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 .app-container:hover {
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
 }
 
+/* Taxi Meter Section */
+.taxi-meter {
+  padding: 30px;
+  position: relative;
+}
+
+/* App Header */
 .app-header {
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
 }
 
 .app-icon {
-  font-size: 36px;
+  font-size: 2.5rem;
+  margin-right: 15px;
+  transform: rotate(-10deg);
+  animation: bounce 2s infinite;
 }
 
 .app-title {
-  font-size: 26px;
-  font-weight: bold;
-  color: #222;
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
+/* Input Group */
 .input-group {
-  margin: 20px 0;
+  margin-bottom: 25px;
 }
 
 .input-label {
   display: block;
-  font-size: 16px;
   margin-bottom: 8px;
-  color: #444;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95rem;
 }
 
 .input-field {
   width: 100%;
-  padding: 12px 14px;
-  font-size: 16px;
-  border: 2px solid #90caf9;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
   border-radius: 10px;
-  outline: none;
-  transition: border-color 0.3s;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background-color: #f9f9f9;
 }
 
 .input-field:focus {
-  border-color: #1976d2;
-  box-shadow: 0 0 5px rgba(25, 118, 210, 0.3);
+  border-color: #4a90e2;
+  outline: none;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
 }
 
+/* Calculate Button */
 .calculate-btn {
   width: 100%;
-  background-color: #2196f3;
+  padding: 15px;
+  background: linear-gradient(to right, #4a90e2, #5a9ce6);
   color: white;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 12px;
-  margin-top: 10px;
   border: none;
   border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(74, 144, 226, 0.2);
+  margin-bottom: 25px;
 }
 
 .calculate-btn:hover {
-  background-color: #1976d2;
+  background: linear-gradient(to right, #3a80d2, #4a90e2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(74, 144, 226, 0.3);
 }
 
+.calculate-btn:active {
+  transform: translateY(0);
+}
+
+/* Fare Display */
 .fare-display {
-  margin-top: 20px;
-  font-size: 22px;
-  color: #333;
-  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px dashed #ddd;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+
+.fare-display:hover {
+  background: #f1f3f5;
+  border-color: #4a90e2;
 }
 
 .currency {
-  margin: 0 4px;
+  font-size: 1.1rem;
+  color: #555;
+  margin: 0 5px;
 }
 
-.app-footer {
-  margin-top: 30px;
-  font-size: 14px;
+.fare-amount {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  min-width: 60px;
   text-align: center;
-  color: #888;
 }
 
-/* khmer */
-@font-face { 
-  font-family: 'Nokora'; 
-  font-style: normal; 
-  font-weight: 400; 
-  src: url(https://fonts.gstatic.com/s/nokora/v32/hYkIPuwgTubzaWxgNzAOkvY.woff2) format('woff2'); 
-  unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; 
-} 
+/* App Footer */
+.app-footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.85rem;
+}
 
-/* latin */
-@font-face { 
-  font-family: 'Nokora'; 
-  font-style: normal; 
-  font-weight: 400; 
-  src: url(https://fonts.gstatic.com/s/nokora/v32/hYkIPuwgTubzaWxgPDAO.woff2) format('woff2'); 
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; 
+/* Animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(-10deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-10deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .app-container {
+    border-radius: 15px;
+  }
+  
+  .taxi-meter {
+    padding: 25px 20px;
+  }
+  
+  .app-title {
+    font-size: 1.5rem;
+  }
+  
+  .app-icon {
+    font-size: 2rem;
+  }
 }

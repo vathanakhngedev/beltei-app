@@ -1,185 +1,304 @@
-/* General Styles */
+:root {
+  --primary: #6C5CE7;
+  --primary-dark: #5649C0;
+  --secondary: #00CEFF;
+  --dark: #2D3436;
+  --light: #F5F6FA;
+  --success: #00B894;
+  --glass: rgba(255, 255, 255, 0.15);
+}
+
+/* Modern Reset & Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('https://fonts.cdnfonts.com/css/sf-pro-display') format('woff2');
 }
 
 body {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  perspective: 1000px;
 }
 
-/* App Container */
+/* Glassmorphism Card */
 .app-container {
   width: 100%;
-  max-width: 400px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: float 6s ease-in-out infinite;
 }
 
 .app-container:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) rotateX(1deg) rotateY(1deg);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Taxi Meter Section */
-.taxi-meter {
-  padding: 30px;
-  position: relative;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-/* App Header */
+/* App Header with Neumorphism Icon */
 .app-header {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
   justify-content: center;
+  padding: 2rem 2rem 1.5rem;
+  position: relative;
 }
 
 .app-icon {
-  font-size: 2.5rem;
-  margin-right: 15px;
+  font-size: 3rem;
+  margin-right: 1rem;
+  background: var(--glass);
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.1),
+    -8px -8px 16px rgba(255, 255, 255, 0.05);
   transform: rotate(-10deg);
-  animation: bounce 2s infinite;
+  animation: bounce 2s infinite, glow 3s infinite alternate;
 }
 
 .app-title {
   font-size: 1.8rem;
-  color: #333;
   font-weight: 700;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  background: linear-gradient(to right, #fff, #e0e0e0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.5px;
 }
 
-/* Input Group */
+/* Modern Input Field */
 .input-group {
-  margin-bottom: 25px;
+  padding: 0 2rem 1.5rem;
+  position: relative;
 }
 
 .input-label {
   display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #555;
+  margin-bottom: 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
 .input-field {
   width: 100%;
-  padding: 15px;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
   font-size: 1rem;
-  transition: all 0.3s;
-  background-color: #f9f9f9;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .input-field:focus {
-  border-color: #4a90e2;
   outline: none;
-  background-color: white;
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+  border-color: var(--secondary);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 206, 255, 0.2);
+  transform: translateY(-2px);
 }
 
-/* Calculate Button */
+/* Holographic Button */
 .calculate-btn {
-  width: 100%;
-  padding: 15px;
-  background: linear-gradient(to right, #4a90e2, #5a9ce6);
+  width: calc(100% - 4rem);
+  margin: 0 2rem 2rem;
+  padding: 1.1rem;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 6px rgba(74, 144, 226, 0.2);
-  margin-bottom: 25px;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 
+    0 4px 15px rgba(108, 92, 231, 0.4),
+    0 8px 25px rgba(0, 206, 255, 0.3);
+}
+
+.calculate-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+  z-index: -1;
 }
 
 .calculate-btn:hover {
-  background: linear-gradient(to right, #3a80d2, #4a90e2);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(74, 144, 226, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 6px 20px rgba(108, 92, 231, 0.5),
+    0 10px 30px rgba(0, 206, 255, 0.4);
+}
+
+.calculate-btn:hover::before {
+  left: 100%;
 }
 
 .calculate-btn:active {
   transform: translateY(0);
 }
 
-/* Fare Display */
+/* Futuristic Display */
 .fare-display {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px dashed #ddd;
-  margin-bottom: 10px;
-  transition: all 0.3s;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 0 2rem 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.fare-display:hover {
-  background: #f1f3f5;
-  border-color: #4a90e2;
+.fare-display::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    transparent,
+    transparent,
+    transparent,
+    rgba(255, 255, 255, 0.1)
+  );
+  transform: rotate(30deg);
+  animation: shine 3s infinite;
 }
 
 .currency {
   font-size: 1.1rem;
-  color: #555;
-  margin: 0 5px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 8px;
 }
 
 .fare-amount {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  color: #2c3e50;
-  min-width: 60px;
-  text-align: center;
-}
-
-/* App Footer */
-.app-footer {
-  background: #2c3e50;
   color: white;
+  min-width: 80px;
   text-align: center;
-  padding: 15px;
-  font-size: 0.85rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  font-feature-settings: "tnum";
 }
 
-/* Animation */
+/* Glowing Footer */
+.app-footer {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3));
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.app-footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+/* Animations */
 @keyframes bounce {
-  0%, 100% {
-    transform: translateY(0) rotate(-10deg);
-  }
-  50% {
-    transform: translateY(-5px) rotate(-10deg);
-  }
+  0%, 100% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-8px) rotate(-10deg); }
 }
 
-/* Responsive Design */
+@keyframes glow {
+  0% { filter: drop-shadow(0 0 5px rgba(108, 92, 231, 0.5)); }
+  100% { filter: drop-shadow(0 0 15px rgba(0, 206, 255, 0.7)); }
+}
+
+@keyframes shine {
+  0% { transform: rotate(30deg) translate(-10%, -10%); }
+  100% { transform: rotate(30deg) translate(10%, 10%); }
+}
+
+/* Micro-interaction for result */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#result {
+  animation: fadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Responsive Adjustments */
 @media (max-width: 480px) {
   .app-container {
-    border-radius: 15px;
+    border-radius: 20px;
+    max-width: 92vw;
   }
   
-  .taxi-meter {
-    padding: 25px 20px;
+  .app-header {
+    padding: 1.5rem 1.5rem 1rem;
   }
   
-  .app-title {
-    font-size: 1.5rem;
+  .input-group {
+    padding: 0 1.5rem 1.25rem;
   }
   
-  .app-icon {
-    font-size: 2rem;
+  .calculate-btn, .fare-display {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+  
+  .fare-amount {
+    font-size: 1.8rem;
   }
 }
